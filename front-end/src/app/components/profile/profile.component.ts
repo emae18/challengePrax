@@ -54,10 +54,13 @@ export class ProfileComponent implements OnInit {
   }
 
   public cargarDocs():void {
+
       this.docs.getDocuments(this.auth.userData.email).subscribe(res=>{
         console.log("lo loagraste?"+res.data)
         this.shared.setDocuments(res.data);
       })
+      
+   
   }
 
 }

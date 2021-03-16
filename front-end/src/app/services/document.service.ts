@@ -25,6 +25,8 @@ export class DocumentService {
         map(response => {
           if (response.success === 1) {
             console.log(response.data);
+          }else{
+            window.location.reload();
           }
           return response;
         })

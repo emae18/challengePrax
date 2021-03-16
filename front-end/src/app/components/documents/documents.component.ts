@@ -7,6 +7,7 @@ import { SharedService } from 'src/app/services/shared.service';
 import { DocumentService } from 'src/app/services/document.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserLogged } from 'src/app/models/userLogged';
 @Component({
   selector: 'app-documents',
   templateUrl: './documents.component.html',
@@ -15,7 +16,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class DocumentsComponent implements OnInit {
   text_search = 'Limpiar';
   documents:Document[];
-  id;
+  userL:UserLogged;
   @ViewChild("fileUpload", { static: false }) fileUpload: ElementRef; files = [];
 
   constructor(private uploadService: UploadService, private shared: SharedService
@@ -23,15 +24,16 @@ export class DocumentsComponent implements OnInit {
     private router: Router, private auth:AuthService) { 
   }
   ngOnInit(): void {
-    this.shared.eDocuments.subscribe(res => {
-      if (!!res) {
-        this.documents = res;
+    
+    this.shared.eUserLogged.subscribe(res => {
+      if(!!res) {
+        this.userL = res;
         this.cdr.detectChanges();
       }
     })
-    this.shared.eUserLogged.subscribe(res => {
-      if(!!res) {
-        this.id=res.id;
+    this.shared.eDocuments.subscribe(res => {
+      if (!!res) {
+        this.documents = res;
         this.cdr.detectChanges();
       }
     })
@@ -51,23 +53,27 @@ export class DocumentsComponent implements OnInit {
         }
       }),
       catchError((error: HttpErrorResponse) => {
+       
         file.inProgress = false;
         return of(`${file.data.name} upload failed.`);
       })).subscribe((event: any) => {
         if (typeof (event) === 'object') {
           // = JSON.stringify(event.body);
           console.log(event.body);
-          this.documentService.uploadDocuments(event.body.name, event.body.link,this.id)
+          this.documentService.uploadDocuments(event.body.name, event.body.link,this.userL.id)
           .subscribe(response => {
             console.log(response);
             if (response.success === 1) {
-              alert("Su documento fue subido")
+              alert("Su documento fue subido con éxito")
               this.router.navigate(['/layout',{outlets:{left:['profile']}}]);
               this.files=[];
               this.documentService.getDocuments(this.auth.userData.email).subscribe(res=>{
                 console.log("lo loagraste?"+res.data)
                 this.shared.setDocuments(res.data);
               })
+            }else{
+              window.location.reload();
+
             }
           });
         }

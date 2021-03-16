@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
         band=true;
         this.shared.setTextHeader('Salir');
         this.router.navigate(['/layout', { outlets: { left: ['profile'] } }]);
+
       }
     });
     if(!band)alert("Correo / constraseña Incorrecto")
