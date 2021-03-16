@@ -1,0 +1,55 @@
+
+  <mat-card fxLayout="column" fxLayoutAlign="space-evenly none" >
+      <mat-card-header fxLayout="column" fxLayoutAlign="center start">
+          <mat-card-subtitle>Esta a punto de registrarse en la plataforma</mat-card-subtitle>
+          <mat-card-title class="mat-h1">Registrarse</mat-card-title>
+      </mat-card-header>
+
+      <form fxLayout="column">
+          <mat-card-content fxLayout="column">
+            <mat-form-field appearance="outline">
+              <mat-label>Ingrese su Nombre Completo</mat-label>
+              <input (change)='fullname=$event.target.value' [value]="fullname" matInput placeholder="Nombre Apellido">
+            </mat-form-field>
+              <mat-form-field appearance="outline">
+                  <mat-label>Ingresa tu correo</mat-label>
+                  <input matInput placeholder="nombre@gmail.com" [formControl]="email" required>
+                  <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                  <mat-label>Ingresa tu contraseña</mat-label>
+                  <input (change)='password=$event.target.value' [value]="password" matInput [type]="hide ? 'password' : 'text'">
+                  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                      [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+              </mat-form-field>
+              <mat-form-field  appearance="outline">
+                <mat-label>Confirma tu contraseña</mat-label>
+                <input (change)='cPassword=$event.target.value' [value]="cPassword" matInput [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Ingrese su Fecha de Nacimiento</mat-label>
+              <input (dateChange)="setDateBirthday('change', $event)" fromControlName="dateBirthday" matInput placeholder="01/08/1997" [matDatepicker]="picker" (focus)="picker.open()">
+              <mat-datepicker-toggle matSuffix [for]="picker">
+                <mat-icon matDatepickerToggleIcon>cake</mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+              <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-between none">
+                  <mat-checkbox [checked]="terms" (change)="setTerms($event)"  color="primary">Acepto los Términos de Privacidad</mat-checkbox>
+              </div>
+          </mat-card-content>
+          <button (click)="signUp()" mat-raised-button color="primary">Registrarse</button>
+      </form>
+      <mat-divider></mat-divider>
+      <a fxFlexAlign="center" fxFlexOffset="5" style="color:rgb(124, 91, 214); font-size:large" routerLink="/home/login" >
+        Ya tengo una Cuenta </a>
+  </mat-card>
+  
+  
+  

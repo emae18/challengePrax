@@ -1,0 +1,9 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\emae\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\emae\\.nuget\\packages",
+      "E:\\Aplicaciones86\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+    ]
+  }
+}

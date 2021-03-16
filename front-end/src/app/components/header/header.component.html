@@ -1,0 +1,24 @@
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center">
+  <button routerLink="home/login" mat-icon-button>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Ejercicio Praxys</span>
+  <div>
+    <button mat-flat-button color="primary" disabled>
+      <mat-icon aria-label="Subir Documento">file_upload</mat-icon>
+      Subir
+
+    </button>
+    <button *ngIf="texto==='Ingresar'" [routerLink]="['/layout',{outlets:{left:['profile']}}]" mat-flat-button color="primary" aria-label="Perfil">
+      <mat-icon>account_box</mat-icon>
+      Ingresar
+
+    </button>
+    <!-- [routerLink]="['/layout',{outlets:{left:['profile']}}]"  -->
+    <button  *ngIf="texto==='Salir'" (click)="logout()" mat-flat-button color="primary" aria-label="Perfil">
+      <mat-icon>account_box</mat-icon>
+      Salir
+
+    </button>
+  </div>
+</mat-toolbar>

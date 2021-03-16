@@ -1,0 +1,71 @@
+<div fxLayout="column" fxxLayoutAlign="center center">
+    <mat-card>
+        <mat-card-content>
+            <ul>
+                <li *ngFor="let file of files">
+
+                    <mat-divider></mat-divider>
+                    <span>Nombre: {{file.data.name}}
+                    </span>
+
+                    <mat-progress-bar mode="determinate" [value]="file.progress" *ngIf="file.progress > 0">
+                    </mat-progress-bar>
+                    <span style="float: right" id="file-label">
+                        <!-- {{file | json}} -->
+                        {{file.progress}}%
+                    </span>
+
+                    <mat-divider></mat-divider>
+                </li>
+
+            </ul>
+        </mat-card-content>
+        <mat-card-actions style="text-align:center">
+            <button mat-stroked-button color="primary" (click)="onClick()">
+                <mat-icon>file_upload</mat-icon>
+                Subir Documentos
+            </button>
+        </mat-card-actions>
+    </mat-card><input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple"
+        accept=".xlsx,.xls,.doc, .docx,.ppt, .pptx,.txt,.pdf" style="display:none;" />
+
+    <mat-card>
+        <mat-list fxLayout="column" fxLayoutAlign="start">
+            <mat-list-item fxFlex="50">
+                <mat-list-item-content fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center"
+                    fxLayoutGap="2vw">
+                    <mat-form-field>
+                        <mat-label>Buscar Documento</mat-label>
+                        <input matInput type="text" [(ngModel)]="text_search">
+                        <button mat-button *ngIf="text_search" matSuffix mat-icon-button aria-label="Limpiar"
+                            (click)="text_search=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                        <mat-button-toggle value="bold">A</mat-button-toggle>
+                        <mat-button-toggle value="italic">B</mat-button-toggle>
+                        <mat-button-toggle value="underline">C</mat-button-toggle>
+                    </mat-button-toggle-group>
+                </mat-list-item-content>
+            </mat-list-item>
+            <div fxFlexOffset.xs="15"></div>
+            <mat-list-item *ngFor="let document of documents ">
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" style="width:100%">
+                    <span>{{document.nameFile}}</span>
+                    <div style="align-self: center;">
+                        <span> </span>
+                        <button (click)="download(document.path)" mat-icon-button color="primary" aria-label="Descargar">
+                            
+                            <mat-icon>download</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" aria-label="Descargar" disabled>
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </mat-list>
+    </mat-card>
+</div>

@@ -1,0 +1,62 @@
+<mat-card fxLayout="column" fxLayoutAlign="center none">
+    <mat-card-header fxLayout="row" fxLayoutAlign="start start">
+        <mat-icon>face</mat-icon>
+    </mat-card-header>
+    <img fxFlexAlign="center" style="border-radius: 50%; max-width: 10vw; max-height: 10vw;" mat-card-image
+        src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content style="width:100%" fxLayout="column" fxLayoutAlign="space-evenly center">
+        <mat-card-title-group>
+            <mat-card-title>
+                {{username}}
+            </mat-card-title>
+            <mat-card-subtitle>
+                {{email}}
+            </mat-card-subtitle>
+        </mat-card-title-group>
+        <mat-list style="width:100%">
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <div style="width:100%" fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-card-subtitle style="margin-top:1px;margin-bottom: 1px;">
+                        Nombre Completo
+                    </mat-card-subtitle>
+                    <label>{{fullname}}</label>
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <div style="width:100%" fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-card-subtitle style="margin-top:1px;margin-bottom: 1px;">
+                        Fecha de Nacimiento
+                    </mat-card-subtitle>
+                    <label>{{dateBirthday |  date:'MM/dd/yyyy'}}</label>
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+                <div style="width:100%" fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-card-subtitle style="margin-top:1px;margin-bottom: 1px;">
+                        Miembro desde
+                    </mat-card-subtitle>
+                    <label>{{createdOn |  date:'MM/dd/yyyy'}}</label>
+                </div>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+    <mat-card-footer fxLayout="row wrap" fxLayoutAlign="space-evenly" fxLayoutGap="1vw">
+        <button [routerLink]="['/layout',{outlets:{right:['docs']}}]" (click)="cargarDocs()" mat-raised-button color="primary">
+            <mat-icon>description</mat-icon>
+            Ver Documentos
+        </button>
+        <button [routerLink]="['/layout',{outlets:{right:['crud']}}]" mat-raised-button color="accent" >
+            <mat-icon>manage_accounts</mat-icon>
+            Editar Perfil
+        </button>
+        <button mat-raised-button color="warn">
+            <mat-icon>person_remove</mat-icon>
+            Eliminar Cuenta
+        </button>
+    </mat-card-footer>
+
+
+</mat-card>

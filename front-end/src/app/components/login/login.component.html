@@ -1,0 +1,44 @@
+
+    <mat-card   fxLayout="column" fxLayoutAlign="center none">
+        <mat-card-header fxLayout="column" fxLayoutAlign="center start">
+            <mat-card-subtitle>Bienvenido de nuevo</mat-card-subtitle>
+            <mat-card-title class="mat-h1">Ingresa con tu Cuenta</mat-card-title>
+        </mat-card-header>
+
+        <form fxLayout="column">
+            <mat-card-content fxLayout="column">
+                <mat-form-field appearance="outline">
+                    <mat-label>Ingresa tu correo</mat-label>
+                    <input matInput placeholder="nombre@gmail.com" [formControl]="email" required>
+                    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Ingresa tu contraseña</mat-label>
+                    <input matInput (change)='password=$event.target.value' [value]="password" [type]="hide ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix  (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-between none">
+                    <mat-checkbox color="primary">Recuerdame</mat-checkbox>
+                    <button mat-button color="primary">Olvidé mi Contraseña</button>
+                </div>
+            </mat-card-content>
+            <!-- routerLink="/home/profile" -->
+            <button mat-raised-button  color="primary" (click)="login()">Ingresar</button>
+        </form>
+        <button fxFlexOffset="5" mat-raised-button disabled>
+            <mat-icon>facebook</mat-icon>
+            Ingresar con Facebook
+        </button>
+
+    </mat-card>
+    
+    <div style="margin-top:auto">
+        <h3 >Todavía no tienes cuenta?
+            <a style="color:rgb(124, 91, 214); font-size:large" routerLink="/home/register" >
+                Registrate Aquí </a>
+        </h3>
+    </div>
+
