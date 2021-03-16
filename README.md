@@ -5,6 +5,7 @@ Descargar el repositorio como ".zip" o clonarlo y seguir los pasos para ejecutar
 # FrontEnd Angular:
   - Ejecutar el comando "npm i" dentro del directorio front-end, y luego "ng serve"
   - Dentro del directorio "src/environments", modificar la variable de entorno sí fuese necesario.
+  - Posee un bug al primer logue después de registrarse no permite subir archivos, se arregla recargando la página "F5"
 
 # BackEnd C#:
   - Dentro de la carpeta se encuentra un archivo ".sln" correspondiente a la solución del ejercicio realizado en Visual Studio 2019.
